@@ -64,7 +64,7 @@ public class UK_LSE_5Mins_ReadMacdService {
 			iteratorSize = 	MarketFeedsSizeForSymbol;
 			}
 
-			for (int index = 0; index < iteratorSize; index++) {
+			for (int index = MarketFeedsSizeForSymbol-1; index > MarketFeedsSizeForSymbol-iteratorSize; index--) {
 
 				// LOGIC
 				JSONObject obj_inner = new JSONObject();
