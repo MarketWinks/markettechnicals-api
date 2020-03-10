@@ -1,9 +1,9 @@
 package com.markettechnicalsapi.markettechnicalsapi.services;
 
 import java.util.Comparator;
-import java.util.List;
 
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,9 +26,9 @@ public class UK_LSE_5Mins_ReadMacdService {
 
 	@org.springframework.scheduling.annotation.Async
 	@RequestMapping(value = "/read/{symbol}", method = RequestMethod.GET)
-	public List<JSONObject> UK_LSE_5Mins_ReadMacdParser(@PathVariable String symbol) {
+	public JSONObject UK_LSE_5Mins_ReadMacdParser(@PathVariable String symbol) {
 
-		List<JSONObject> execution_result = null;
+		JSONObject execution_result = null;
 
 		try {
 
@@ -44,9 +44,10 @@ public class UK_LSE_5Mins_ReadMacdService {
 
 			String docext = doc.toJson().toString();
 
-			System.out.println(docext);
+			JSONParser parser = new JSONParser();
+			JSONObject json = (JSONObject) parser.parse(docext);
 
-			execution_result = null;
+			execution_result = json;
 		} catch (Exception e) {
 
 			System.out.println(e);
