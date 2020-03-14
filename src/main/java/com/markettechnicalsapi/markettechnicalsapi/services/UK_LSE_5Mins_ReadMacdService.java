@@ -37,6 +37,7 @@ public class UK_LSE_5Mins_ReadMacdService {
 			MongoDatabase TestDB = mongoClient.getDatabase("test");
 			MongoCollection<org.bson.Document> uk_lse_5mins_livemarketmacdjsonCollection = TestDB
 					.getCollection("uk_lse_5mins_livemarketmacdjson");
+			mongoClient.close();
 
 			// find one document with new Document
 			org.bson.Document doc = uk_lse_5mins_livemarketmacdjsonCollection
