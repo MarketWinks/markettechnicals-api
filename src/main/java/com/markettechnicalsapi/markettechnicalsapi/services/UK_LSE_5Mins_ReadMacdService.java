@@ -33,7 +33,7 @@ public class UK_LSE_5Mins_ReadMacdService {
 		try {
 
 			MongoClient mongoClient = MongoClients.create(
-					"mongodb+srv://checkoutfood:checkoutfood123@cluster0-5ffrd.mongodb.net/test?retryWrites=true");
+					"mongodb+srv://marketwinks:L9sS6oOAk1sHL0yi@aws-eu-west1-cluster-tszuq.mongodb.net/marketwinksdbprod?retryWrites=true");
 			MongoDatabase TestDB = mongoClient.getDatabase("test");
 			MongoCollection<org.bson.Document> uk_lse_5mins_livemarketmacdjsonCollection = TestDB
 					.getCollection("uk_lse_5mins_livemarketmacdjson");
