@@ -34,7 +34,7 @@ public class UK_LSE_5Mins_ReadMacdService {
 
 			MongoClient mongoClient = MongoClients.create(
 					"mongodb+srv://marketwinks:L9sS6oOAk1sHL0yi@aws-eu-west1-cluster-tszuq.mongodb.net/marketwinksdbprod?retryWrites=true");
-			MongoDatabase TestDB = mongoClient.getDatabase("test");
+			MongoDatabase TestDB = mongoClient.getDatabase("marketwinksdbprod");
 			MongoCollection<org.bson.Document> uk_lse_5mins_livemarketmacdjsonCollection = TestDB
 					.getCollection("uk_lse_5mins_livemarketmacdjson");
 
