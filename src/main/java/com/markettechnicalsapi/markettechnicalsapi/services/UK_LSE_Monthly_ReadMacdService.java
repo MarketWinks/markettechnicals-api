@@ -10,23 +10,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.markettechnicalsapi.markettechnicalsapi.model.uk_lse_5mins_livemarketmacd;
-import com.markettechnicalsapi.markettechnicalsapi.repository.UK_LSE_5Mins_LiveMarketMacdjsonRepository;
+import com.markettechnicalsapi.markettechnicalsapi.model.uk_lse_monthly_livemarketmacd;
+import com.markettechnicalsapi.markettechnicalsapi.repository.UK_LSE_Monthly_LiveMarketMacdjsonRepository;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
 @RestController
-@RequestMapping("/uk_lse_5mins/macd")
-public class UK_LSE_5Mins_ReadMacdService {
+@RequestMapping("/uk_lse_monthly/macd")
+public class UK_LSE_Monthly_ReadMacdService {
 
 	@Autowired
-	private UK_LSE_5Mins_LiveMarketMacdjsonRepository UK_LSE_5Mins_LiveMarketMacdjsonRepository;
+	private UK_LSE_Monthly_LiveMarketMacdjsonRepository UK_LSE_Monthly_LiveMarketMacdjsonRepository;
 
 	@org.springframework.scheduling.annotation.Async
 	@RequestMapping(value = "/read/{symbol}", method = RequestMethod.GET)
-	public JSONObject UK_LSE_5Mins_ReadMacdParser(@PathVariable String symbol) {
+	public JSONObject UK_LSE_Monthly_ReadMacdParser(@PathVariable String symbol) {
 
 		JSONObject execution_result = null;
 
@@ -36,12 +36,12 @@ public class UK_LSE_5Mins_ReadMacdService {
 		try {
 
 			MongoDatabase TestDB = mongoClient.getDatabase("marketwinksdbprod");
-			MongoCollection<org.bson.Document> uk_lse_5mins_livemarketmacdjsonCollection = TestDB
-					.getCollection("uk_lse_5mins_livemarketmacdjson");
+			MongoCollection<org.bson.Document> uk_lse_monthly_livemarketmacdjsonCollection = TestDB
+					.getCollection("uk_lse_monthly_livemarketmacdjson");
 
 			// find one document with new Document
-			org.bson.Document doc = uk_lse_5mins_livemarketmacdjsonCollection
-					.find(new org.bson.Document("macdjsonref", "uk_lse_5mins_macdjson_" + symbol)).first();
+			org.bson.Document doc = uk_lse_monthly_livemarketmacdjsonCollection
+					.find(new org.bson.Document("macdjsonref", "uk_lse_monthly_macdjson_" + symbol)).first();
 
 			String docext = doc.toJson().toString();
 
@@ -64,8 +64,8 @@ public class UK_LSE_5Mins_ReadMacdService {
 
 }
 
-class SortbyLatestTime implements Comparator<uk_lse_5mins_livemarketmacd> {
-	public int compare(uk_lse_5mins_livemarketmacd a, uk_lse_5mins_livemarketmacd b) {
+class SortbyLatestTime_monthly implements Comparator<uk_lse_monthly_livemarketmacd> {
+	public int compare(uk_lse_monthly_livemarketmacd a, uk_lse_monthly_livemarketmacd b) {
 		return a.getTime().compareTo(b.getTime());
 	}
 }
